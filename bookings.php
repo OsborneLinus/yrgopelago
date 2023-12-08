@@ -16,7 +16,7 @@ class Booking
     {
         try {
             $this->dbh = new PDO(
-                sprintf('mysql:127.0.0.1=%s;dbname=%s', $host, $database),
+                sprintf('mysql:host=%s;dbname=%s', $host, $database),
                 $databaseUsername,
                 $databaseUserPassword
             );

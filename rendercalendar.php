@@ -1,4 +1,4 @@
-<body>
+
     <?php
     require 'calendar.php';
     require 'bookings.php';
@@ -6,8 +6,8 @@
 
 
     $booking = new Booking(
-        'tutorial',
-        'localhost',
+        'hotel_booking',
+        '127.0.0.1',
         'root',
         ''
     );
@@ -22,4 +22,3 @@
 
     echo $calendar->show();
     ?>
-</body>

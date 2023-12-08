@@ -1,3 +1,7 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +17,7 @@
 </head>
 
 <body>
-    <header>
+    <!--     <header>
         <div class="flex justify-center">
             <nav class="w-5/6 h-16 fixed top-0 z-10 flex bg-green-900 text-white items-center justify-end space-x-10 px-10">
                 <p class="">YRGOPELAGO</p>
@@ -26,8 +30,9 @@
     </header>
     <section>
         <div class="h-screen bg-cover bg-no-repeat absolute top-0 left-0 right-0" style="background-image: url(media/SunbedsOnShore.jpg)"></div>
-    </section>
-    <?php require __DIR__ . 'rendercalendar.php'; ?>
+    </section> -->
+    <?php require 'rendercalendar.php';
+    ?>
     <script src="app.js"></script>
 </body>
 
