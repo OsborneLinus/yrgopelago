@@ -3,5 +3,21 @@
   "editor.formatOnSave": true,
   "[php]": {
     "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
-  }
+  },
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "127.0.0.1",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "MySQL",
+      "database": "MySQL",
+      "username": "root",
+      "password": ""
+    }
+  ]
 }
