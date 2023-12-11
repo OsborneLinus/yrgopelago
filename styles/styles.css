@@ -67,7 +67,7 @@ div#calendar ul.label li {
   padding: 0px;
   margin-right: 5px;
   float: left;
-  list-style-type: none;
+  list-style: none;
   width: 80px;
   height: 40px;
   line-height: 40px;
@@ -95,7 +95,7 @@ div#calendar ul.dates li {
   line-height: 80px;
   vertical-align: middle;
   float: left;
-  list-style-type: none;
+  list-style: none;
   width: 80px;
   height: 80px;
   font-size: 25px;
@@ -114,6 +114,7 @@ div.clear {
 }
 
 li div {
+  list-style: none;
   display: flex;
 }
 

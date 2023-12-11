@@ -8,10 +8,9 @@ error_reporting(E_ALL); ?>
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="node_modules/@glidejs/glide/dist/glide.min.js"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="/styles/styles.css" />
 
     <title>Yrgopelago</title>
 </head>
@@ -31,7 +30,7 @@ error_reporting(E_ALL); ?>
     <section>
         <div class="h-screen bg-cover bg-no-repeat absolute top-0 left-0 right-0" style="background-image: url(media/SunbedsOnShore.jpg)"></div>
     </section> -->
-    <?php require 'rendercalendar.php';
+    <?php require 'bookings/rendercalendar.php';
     ?>
     <script src="app.js"></script>
 </body>

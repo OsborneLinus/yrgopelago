@@ -42,6 +42,17 @@ class BookableCell
             $this->addBooking($_POST['date']);
         }
     }
+    public function showBookingForm($cellDate)
+    {
+        $form = '<form action="processBooking.php" method="post">';
+        $form .= '<input type="hidden" name="cellDate" value"' . $cellDate . '">';
+        $form .= 'Name: <input type="text" name="name"><br>';
+        $form .= 'Email: <input type="email" name="email"><br>';
+        $form .= '<input type="submit" value="Book">';
+        $form .= '</form>';
+
+        return $form;
+    }
 
     private function openCell($date)
     {

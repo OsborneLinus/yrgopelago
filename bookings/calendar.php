@@ -1,13 +1,15 @@
 <?php
-
+require 'bookings/bookableCell.php';
 class Calendar
 {
     /*
                     * Constructor
                     */
+    private $bookableCell;
     public function __construct()
     {
         $this->naviHref = htmlentities($_SERVER['PHP_SELF']);
+        $this->bookableCell = new BookableCell();
     }
 
     public $cellContent = '';
@@ -85,7 +87,7 @@ class Calendar
             '<div class="box">' .
             $this->_createNavi() .
             '</div>' .
-            '<div class="box-content>' .
+            '<div class="box-content">' .
             '<ul class="label">' . $this->_createLabels() . '</ul>';
         $content .= '<div class="clear"></div>';
         $content .= '<ul class="dates">';
@@ -102,33 +104,28 @@ class Calendar
         return $content;
     }
     /* Create the li element for ul */
+
     private function _showDay($cellNumber, $attributes = false)
     {
-        if ($this->currentDay == 0) {
-            // 1(for Monday) through 7 (for Sunday)
-            $firstDayOfWeek = date('N', strtotime($this->currentYear . '-' . $this->currentMonth . '-01'));
-            if ($this->sundayFirst) {
-                if ($firstDayOfWeek == 7) {
-                    $firstDayOfWeek = 1;
-                } else {
-                    $firstDayOfWeek++;
-                }
-            }
-            if (intval($cellNumber) == intval($firstDayOfWeek)) {
-                $this->currentDay = 1;
-            }
+        $firstDayOfMonth = date('N', strtotime($this->currentYear . '-' . $this->currentMonth . '-01'));
+        if ($this->sundayFirst) {
+            $firstDayOfMonth = ($firstDayOfMonth == 7) ? 1 : ($firstDayOfMonth + 1);
         }
 
-        if (($this->currentDay != 0) && ($this->currentDay <= $this->daysInMonth)) {
-            $this->currentDate = date('Y-m-d', strtotime($this->currentYear . '-' . $this->currentMonth . '-' . ($this->currentDay)));
+        $daysInMonth = date('t', strtotime($this->currentYear . '-' . $this->currentMonth . '-01'));
+
+        if ($cellNumber >= $firstDayOfMonth && $cellNumber < $firstDayOfMonth + $daysInMonth) {
+            $this->currentDay = $cellNumber - $firstDayOfMonth + 1;
+            $this->currentDate = date('Y-m-d', strtotime($this->currentYear . '-' . $this->currentMonth . '-' . $this->currentDay));
             $cellContent = $this->_createCellContent($attributes);
-            $this->currentDay++;
         } else {
+            $this->currentDay = 0;
             $this->currentDate = null;
             $cellContent = null;
         }
-        return '<li id="li-' . $this->currentDate . '" class="' . ($cellNumber % 7 == 1 ? ' start ' : ($cellNumber % 7 == 0 ? ' end ' : ' ')) .
-            ($cellContent == null ? 'mask' : '') . '">' . $cellContent . '</li>';
+
+        return '<li id="li-' . $this->currentDate . '" class="' . ($cellNumber % 7 == 1 ? 'start ' : ($cellNumber % 7 == 0 ? 'end ' : '')) .
+            ($cellContent == null ? 'mask' : '') . '">' . ($this->currentDay > 0 ? $this->currentDay : '') . '<br>' . $cellContent . '</li>';
     }
     /**
      * create navigation
@@ -163,7 +160,7 @@ class Calendar
             $temp = $this->dayLabels[0];
             for ($i = 1; $i < sizeof($this->dayLabels); $i++) {
                 $tmp = $this->dayLabels[$i];
-                $this->dayLabels[$i];
+                $this->dayLabels[$i] = $temp;
                 $temp = $tmp;
             }
             $this->dayLabels[0] = $temp;
@@ -171,7 +168,7 @@ class Calendar
 
         $content = '';
         foreach ($this->dayLabels as $index => $label) {
-            $content .= '<li class="' . ($label == 6 ? 'end title' : 'start title') . 'title">' . $label . '</li>';
+            $content .= '<li class="' . ($index == 6 ? 'end title' : 'start title') . 'title">' . $label . '</li>';
         }
         return $content;
     }
@@ -183,14 +180,21 @@ class Calendar
      * @access              private
      */
 
-    private function _createCellContent($setting = false)
+    private function _createCellContent($attributes)
     {
-        $this->cellContent = '';
+        /*         $this->cellContent = '';
         $this->cellContent = $this->currentDay;
 
         // observer
         $this->notifyObserver('showCell');
-        return $this->cellContent;
+        return $this->cellContent; */
+        if ($this->currentDate != null) {
+            $bookingFormLink = '<a href="bookingForm.php?cellDate=' . $this->currentDate . '">Book Now</a>';
+
+            $bookingForm = $this->bookableCell->showBookingForm($this->currentDate);
+            $cellContent = $bookingFormLink . '<br>' . $bookingForm;
+        }
+        return $cellContent;
     }
     /**
      * calculate number of weeks in a particular month
