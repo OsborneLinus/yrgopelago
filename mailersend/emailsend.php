@@ -7,6 +7,7 @@ use MailerSend\Helpers\Builder\Recipient;
 use MailerSend\Helpers\Builder\EmailParams;
 
 
+
 if (isset($_POST['email'])) {
     $emailAddress = $_POST['email'];
 
