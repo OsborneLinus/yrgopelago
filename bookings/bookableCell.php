@@ -1,6 +1,5 @@
 <?php
 
-
 declare(strict_types=1);
 session_start();
 class BookableCell
@@ -29,10 +28,14 @@ class BookableCell
                 $this->bookedCell($cal->getCurrentDate());
         }
 
-        if (!$this->isDateBooked($cal->getCurrentDate())) {
-            return $cal->cellContent =
-                $this->openCell($cal->getCurrentDate());
+        if (isset($_POST['date']) && $_POST['date'] === $cal->getCurrentDate()) {
+            $this->routeActions();
+            $_SESSION['date'] = $_POST['date'];
+            header('Location: ../input.php');
+            exit;
         }
+
+        return $cal->cellContent = $this->openCell($cal->getCurrentDate());
     }
 
     public function routeActions(): void
@@ -42,9 +45,8 @@ class BookableCell
         }
 
 
-
         if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
-            $date = (string)$_POST['date'];
+            $date = $_SESSION['date'];
             $email = $_SESSION['email'];
             $name = $_SESSION['name'];
             $this->addBooking($date, $email, $name);
@@ -52,6 +54,7 @@ class BookableCell
             header('Location: ../mailersend/emailsend.php');
             unset($_SESSION['email']);
             unset($_SESSION['name']);
+            unset($_SESSION['date']);
         }
     }
 
@@ -104,7 +107,7 @@ class BookableCell
     private function bookingForm(string $date): string
     {
         return
-            '<form  method="post" action="/input.php">' .
+            '<form  method="post" action="' . $this->currentURL . '">' .
             '<input type="hidden" name="add" />' .
             '<input type="hidden" name="date" value="' . $date . '" />' .
             '<input class="submit" type="submit" value="Book" />' .

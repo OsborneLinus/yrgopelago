@@ -6,10 +6,8 @@ use MailerSend\MailerSend;
 use MailerSend\Helpers\Builder\Recipient;
 use MailerSend\Helpers\Builder\EmailParams;
 
-
-
-if (isset($_POST['email'])) {
-    $emailAddress = $_POST['email'];
+if (isset($_SESSION['email'])) {
+    $emailAddress = $_SESSION['email'];
 
     $mailersend = new MailerSend(['api_key' => '#']);
 
