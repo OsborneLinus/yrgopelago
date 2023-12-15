@@ -1,5 +1,8 @@
 <?php
 
+
+declare(strict_types=1);
+session_start();
 class BookableCell
 {
     /**
@@ -11,7 +14,7 @@ class BookableCell
 
     /**
      * BookableCell constructor.
-     * @param $booking
+     * @param Booking $booking
      */
     public function __construct(Booking $booking)
     {
@@ -19,7 +22,7 @@ class BookableCell
         $this->currentURL = htmlentities($_SERVER['REQUEST_URI']);
     }
 
-    public function update(Calendar $cal)
+    public function update(Calendar $cal): string
     {
         if ($this->isDateBooked($cal->getCurrentDate())) {
             return $cal->cellContent =
@@ -32,51 +35,49 @@ class BookableCell
         }
     }
 
-    public function routeActions()
+    public function routeActions(): void
     {
         if (isset($_POST['delete'])) {
-            $this->deleteBooking($_POST['id']);
+            $this->deleteBooking((int)$_POST['id']);
         }
 
-        if (isset($_POST['add'])) {
-            $this->addBooking($_POST['date']);
+
+
+        if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
+            $date = (string)$_POST['date'];
+            $email = $_SESSION['email'];
+            $name = $_SESSION['name'];
+            $this->addBooking($date, $email, $name);
+
+            header('Location: ../mailersend/emailsend.php');
+            unset($_SESSION['email']);
+            unset($_SESSION['name']);
         }
     }
-    public function showBookingForm($cellDate)
-    {
-        $form = '<form action="processBooking.php" method="post">';
-        $form .= '<input type="hidden" name="cellDate" value"' . $cellDate . '">';
-        $form .= 'Name: <input type="text" name="name"><br>';
-        $form .= 'Email: <input type="email" name="email"><br>';
-        $form .= '<input type="submit" value="Book">';
-        $form .= '</form>';
 
-        return $form;
-    }
-
-    private function openCell($date)
+    private function openCell(string $date): string
     {
         return '<div class="open">' . $this->bookingForm($date) . '</div>';
     }
 
-    private function bookedCell($date)
+    private function bookedCell(string $date): string
     {
         return '<div class="booked">' . $this->deleteForm($this->bookingId($date)) . '</div>';
     }
 
-    private function isDateBooked($date)
+    private function isDateBooked(string $date): bool
     {
-        return in_array($date, $this->bookedDates());
+        return in_array($date, $this->bookedDates(), true);
     }
 
-    private function bookedDates()
+    private function bookedDates(): array
     {
         return array_map(function ($record) {
             return $record['booking_date'];
         }, $this->booking->index());
     }
 
-    private function bookingId($date)
+    private function bookingId(string $date): int
     {
         $booking = array_filter($this->booking->index(), function ($record) use ($date) {
             return $record['booking_date'] == $date;
@@ -84,31 +85,33 @@ class BookableCell
 
         $result = array_shift($booking);
 
-        return $result['id'];
+        return (int)$result['id'];
     }
 
-    private function deleteBooking($id)
+    private function deleteBooking(int $id): void
     {
         $this->booking->delete($id);
     }
 
-    private function addBooking($date)
+    private function addBooking(string $date, string $email, string $name): void
     {
         $date = new DateTimeImmutable($date);
-        $this->booking->add($date);
+        $email = $_SESSION['email'];
+        $name = $_SESSION['name'];
+        $this->booking->add($date, $email, $name);
     }
 
-    private function bookingForm($date)
+    private function bookingForm(string $date): string
     {
         return
-            '<form  method="post" action="' . $this->currentURL . '">' .
+            '<form  method="post" action="/input.php">' .
             '<input type="hidden" name="add" />' .
             '<input type="hidden" name="date" value="' . $date . '" />' .
             '<input class="submit" type="submit" value="Book" />' .
             '</form>';
     }
 
-    private function deleteForm($id)
+    private function deleteForm(int $id): string
     {
         return
             '<form onsubmit="return confirm(\'Are you sure to cancel?\');" method="post" action="' . $this->currentURL . '">' .

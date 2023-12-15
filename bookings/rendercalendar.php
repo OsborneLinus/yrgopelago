@@ -1,5 +1,6 @@
 
     <?php
+
     require 'calendar.php';
     require 'bookings.php';
     require 'bookableCell.php';
@@ -13,12 +14,13 @@
     );
 
     $bookableCell = new BookableCell($booking);
-
     $calendar = new Calendar();
 
     $calendar->attachObserver('showCell', $bookableCell);
 
     $bookableCell->routeActions();
 
+
     echo $calendar->show();
+
     ?>

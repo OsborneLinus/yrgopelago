@@ -1,15 +1,13 @@
 <?php
-require 'bookings/bookableCell.php';
+
 class Calendar
 {
     /*
                     * Constructor
                     */
-    private $bookableCell;
     public function __construct()
     {
         $this->naviHref = htmlentities($_SERVER['PHP_SELF']);
-        $this->bookableCell = new BookableCell();
     }
 
     public $cellContent = '';
@@ -34,6 +32,7 @@ class Calendar
     {
         $this->observers[$type][] = $observer;
     }
+
 
     /*
                     * @return void
@@ -182,20 +181,14 @@ class Calendar
 
     private function _createCellContent($attributes)
     {
-        /*         $this->cellContent = '';
+        $this->cellContent = '';
         $this->cellContent = $this->currentDay;
 
         // observer
         $this->notifyObserver('showCell');
-        return $this->cellContent; */
-        if ($this->currentDate != null) {
-            $bookingFormLink = '<a href="bookingForm.php?cellDate=' . $this->currentDate . '">Book Now</a>';
-
-            $bookingForm = $this->bookableCell->showBookingForm($this->currentDate);
-            $cellContent = $bookingFormLink . '<br>' . $bookingForm;
-        }
-        return $cellContent;
+        return $this->cellContent;
     }
+
     /**
      * calculate number of weeks in a particular month
      *

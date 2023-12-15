@@ -29,10 +29,10 @@ class Booking
         $statement = $this->dbh->query('SELECT * FROM ' . $this->bookingsTableName);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function add(DateTimeImmutable $bookingDate)
+    public function add(DateTimeImmutable $bookingDate, $email, $name)
     {
         $statement = $this->dbh->prepare(
-            'INSERT INTO ' . $this->bookingsTableName . ' (booking_date) VALUES (:bookingDate)'
+            'INSERT INTO ' . $this->bookingsTableName . ' (booking_date, email, name) VALUES (:bookingDate, :email, :name)'
         );
 
         if (false === $statement) {
@@ -40,6 +40,8 @@ class Booking
         }
         if (false === $statement->execute([
             ':bookingDate' => $bookingDate->format('Y-m-d'),
+            ':email' => $email,
+            ':name' => $name,
         ])) {
             throw new Exception(implode(' ', $statement->errorInfo()));
         }
