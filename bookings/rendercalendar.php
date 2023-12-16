@@ -1,6 +1,5 @@
 
     <?php
-
     require 'calendar.php';
     require 'bookings.php';
     require 'bookableCell.php';

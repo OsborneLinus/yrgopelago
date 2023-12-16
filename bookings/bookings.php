@@ -38,11 +38,16 @@ class Booking
         if (false === $statement) {
             throw new Exception('Invalid prepare statement');
         }
-        if (false === $statement->execute([
+        $success = $statement->execute([
             ':bookingDate' => $bookingDate->format('Y-m-d'),
             ':email' => $email,
             ':name' => $name,
-        ])) {
+        ]);
+        if ($success) {
+            return true;
+        } else {
+            return false;
+        }; {
             throw new Exception(implode(' ', $statement->errorInfo()));
         }
     }

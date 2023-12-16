@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 session_start();
+
+
 class BookableCell
 {
     /**
@@ -37,6 +39,8 @@ class BookableCell
 
         return $cal->cellContent = $this->openCell($cal->getCurrentDate());
     }
+
+
 
     public function routeActions(): void
     {
