@@ -14,15 +14,12 @@ class MailersendWrapper
     {
 
 
-        $mailersend = new MailerSend(['api_key' => '#']);
+        $mailersend = new MailerSend(['api_key' => 'mlsn.a01e8af3952910b2353a27a7affecf391615d73cdf2569eee6c319066fbcc36d']);
 
         $recipients = [
             new Recipient($emailAddress, 'Recipient'),
         ];
 
-
-        echo "Jag är här!";
-        exit;
         $emailParams = (new EmailParams())
             ->setFrom('admin@theduckside.se')
             ->setFromName('Your Name')
@@ -30,13 +27,11 @@ class MailersendWrapper
             ->setSubject('Subject')
             ->setHtml($body)
             ->setText($body);
-        /*
-        if($mailersend->email->send($emailParams)){
+
+        if ($mailersend->email->send($emailParams)) {
             return true;
-        }else{
+        } else {
             return false;
         }
-
-        */
     }
 }
