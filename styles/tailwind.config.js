@@ -6,6 +6,7 @@ module.exports = {
       backgroundImage: {
         'header-picture': "url('/media/header-pic.png')",
         'hero-picture': "url('/media/hero-pic.jpeg')",
+        'hero-pic': "url('/media/SunbedsOnShore.jpg')",
       },
     },
   },

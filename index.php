@@ -18,30 +18,80 @@ error_reporting(E_ALL); ?>
 <body>
     <header>
         <div class="flex justify-center">
-            <nav class="w-5/6 h-16 fixed top-0 z-10 flex bg-green-900 text-white items-center justify-end space-x-10 px-10">
+            <nav class="w-5/6 h-16 relative top-0 z-10 flex bg-green-900 text-white items-center justify-end space-x-10 px-10">
                 <p class="">YRGOPELAGO</p>
-                <a href="#">HOME</a>
+                <a href="index.php">HOME</a>
                 <a href="#">ROOMS</a>
                 <a href="#">BOOKINGS</a>
                 <a href="#">ABOUT US</a>
             </nav>
         </div>
     </header>
-    <section class="flex h-screen">
-        <div class="h-screen bg-cover bg-no-repeat absolute top-0 left-0 right-0 " style="background-image: url(media/SunbedsOnShore.jpg)"></div>
+    <section class="flex justify-center items-center h-screen">
+        <div class="h-screen bg-cover bg-fixed bg-no-repeat absolute top-0 right-0 left-0" style="background-image: url(media/SunbedsOnShore.jpg)"></div>
     </section>
-    <section class="flex justify-center items-center gap-7 m-2">
-        <select class="w-64">
-            <option value="cheap">Two single beds with no balcony</option>
-            <option value="standard">King Size bed with balcony to reception</option>
-            <option value="Expensive">Three roomer with king size bed and balcony towards the beach</option>
+
+    <section class="grid gap-10 h-screen grid-cols-2 grid-rows-3 mx-5 mb-96">
+        <div class="bg-no-repeat h-screen row-span-2" style="background-image: url(media/enPalmochHotell.jpg)"></div>
+        <div class="flex flex-col">
+            <h2 class="text-2xl">Enchance your feelings!</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores nam ab quis maxime accusamus doloremque et mollitia impedit odit. Voluptas atque perferendis quod facilis. Deserunt blanditiis deleniti neque optio!</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur eveniet, sint accusantium eum quos eligendi, optio ab maxime architecto inventore, magni mollitia aliquid accusamus praesentium et eaque dolorum officiis? Molestias?</p>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima explicabo hic laudantium voluptates ab totam vero corporis iusto accusantium nostrum eaque, animi odio! Aperiam corrupti ipsam esse veniam ex nemo.</p>
+        </div>
+
+        <div class="bg-no-repeat h-screen row-span-2 mt-40" style="background-image: url(media/ensamtHusonIsland.jpg)"></div>
+        <div class="flex flex-col pt-40">
+            <h2 class="text-2xl">Experience calmness!</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus quae praesentium at. Atque sit adipisci deserunt labore impedit suscipit dolores illum doloribus eum magni, velit aliquam veritatis nam ipsum odit?</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur eveniet, sint accusantium eum quos eligendi, optio ab maxime architecto inventore, magni mollitia aliquid accusamus praesentium et eaque dolorum officiis? Molestias?</p>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima explicabo hic laudantium voluptates ab totam vero corporis iusto accusantium nostrum eaque, animi odio! Aperiam corrupti ipsam esse veniam ex nemo.</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur eveniet, sint accusantium eum quos eligendi, optio ab maxime architecto inventore, magni mollitia aliquid accusamus praesentium et eaque dolorum officiis? Molestias?</p>
+        </div>
+    </section>
+    <section class="flex justify-center items-center gap-7 m-2 ">
+        <select class="w-fit text-2xl">
+            <option value="superior">Superior</option>
+            <option value="deluxe">Deluxe</option>
+            <option value="standard">Standard</option>
         </select>
         <button id="showCalendar" class=" border-2 border-green-700">Date</button>
     </section>
     <?php require 'bookings/rendercalendar.php';
     ?>
-
-    <script src=" app.js"></script>
+    <div>
+        <div id="scrolling-section" class="relative">
+            <div class="grid grid-cols-2 gap-4 text-center self-center">
+                <div>
+                    <img id="picture1" src="media/SuperiorRoom.jpg" alt="Picture of the Standard based room">
+                </div>
+                <div class="bg-green-800 flex flex-col justify-center items-center">
+                    <h1 class="text-6xl text-white">Superior Room</h1>
+                    <p class="text-lg text-gray-300">2 Guests 1 Bed 15m2</p>
+                </div>
+            </div>
+            <div class=" grid grid-cols-2 gap-4 mt-10">
+                <div>
+                    <img id="picture2" src="media/DeluxeRoom.jpg" alt="Picture 2">
+                </div>
+                <div class="bg-green-800 flex flex-col justify-center items-center">
+                    <h1 class="text-6xl text-white">Deluxe Room</h1>
+                    <p class="text-lg text-gray-300">2 Guests 1 Bed 15m2</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4 mt-10">
+                <div>
+                    <img id="picture3" src="media/StandardRoom.jpg" alt="Picture 3">
+                </div>
+                <div class="bg-green-800 flex flex-col justify-center items-center">
+                    <h1 class="text-6xl text-white">Standard Room</h1>
+                    <p class="text-lg text-gray-300">2 Guests 1 Bed 15m2</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src=" app.js">
+    </script>
 </body>
 
 </html>
