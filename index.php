@@ -50,15 +50,29 @@ error_reporting(E_ALL); ?>
         </div>
     </section>
     <section class="flex justify-center items-center gap-7 m-2 ">
-        <select class="w-fit text-2xl">
-            <option value="superior">Superior</option>
-            <option value="deluxe">Deluxe</option>
-            <option value="standard">Standard</option>
-        </select>
-        <button id="showCalendar" class=" border-2 border-green-700">Date</button>
+        <form action="input.php" method="post">
+            <select name="roomType" class="w-fit text-2xl">
+                <option value="superior">Superior</option>
+                <option value="deluxe">Deluxe</option>
+                <option value="standard">Standard</option>
+            </select>
+            <div class="">
+                <label for="startDate">Start Date:
+                    <input type="date" name="startDate">
+                </label>
+            </div>
+            <div>
+                <label for="endDate">End Date:
+                    <input type="date" name="endDate">
+                </label>
+            </div>
+            <button type="submit">Book</button>
+        </form>
     </section>
-    <?php require 'bookings/rendercalendar.php';
-    ?>
+    <!--         <button id="showCalendar" class=" border-2 border-green-700">Date</button>
+ -->
+    <?php /* require 'bookings/rendercalendar.php';
+                 */ ?>
     <div>
         <div id="scrolling-section" class="relative">
             <div class="grid grid-cols-2 gap-4 text-center self-center">

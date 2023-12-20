@@ -1,8 +1,6 @@
 <?php
 class CurlHandling
 {
-
-
     public function transferCode($transferCode, $totalcost)
     {
         $data = [

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 session_start();
 
-
 class BookableCell
 {
     /**
@@ -49,27 +48,45 @@ class BookableCell
         }
 
 
-        if (isset($_SESSION['email']) && isset($_SESSION['name'])) {
-            $date = $_SESSION['date'];
+        if (isset($_POST['startDate']) && isset($_POST['endDate'])) {
+            $startDate = $_POST['startDate'];
+            $endDate = $_POST['endDate'];
             $email = $_SESSION['email'];
             $name = $_SESSION['name'];
-            $this->addBooking($date, $email, $name);
+
+            $dates = $this->generateDates($startDate, $endDate);
+
+            foreach ($dates as $date) {
+                $this->addBooking($date, $email, $name);
+            }
 
             header('Location: ../mailersend/emailsend.php');
             unset($_SESSION['email']);
             unset($_SESSION['name']);
-            unset($_SESSION['date']);
         }
+    }
+    public function generateDates(string $startDate, string $endDate): array
+    {
+
+        $dates = [];
+        $startingDate = new DateTime($startDate);
+        $endDate = new DateTime($endDate);
+        while ($startingDate < $endDate) {
+            $dates[] = $startingDate->format('Y-m-d');
+            $startingDate->modify('+1 day');
+        }
+
+        return $dates;
     }
 
     private function openCell(string $date): string
     {
-        return '<div class="open">' . $this->bookingForm($date) . '</div>';
+        return '<input type="checkbox" name="date[]" value="' . $date . '">';
     }
 
     private function bookedCell(string $date): string
     {
-        return '<div class="booked">' . $this->deleteForm($this->bookingId($date)) . '</div>';
+        return '<div class="booked" style="background-color: gray;">' . $this->deleteForm($this->bookingId($date)) . '</div>';
     }
 
     private function isDateBooked(string $date): bool
@@ -110,12 +127,12 @@ class BookableCell
 
     private function bookingForm(string $date): string
     {
-        return
-            '<form  method="post" action="' . $this->currentURL . '">' .
-            '<input type="hidden" name="add" />' .
-            '<input type="hidden" name="date" value="' . $date . '" />' .
-            '<input class="submit" type="submit" value="Book" />' .
-            '</form>';
+        return '
+        <form method="post" action="' . $this->currentURL . '">
+            <input type="hidden" name="book" value="' . $date . '" />
+            <input type="submit" value="Book" />
+        </form>
+    ';
     }
 
     private function deleteForm(int $id): string

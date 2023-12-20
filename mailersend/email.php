@@ -14,7 +14,7 @@ class MailersendWrapper
     {
 
 
-        $mailersend = new MailerSend(['api_key' => '#']);
+        $mailersend = new MailerSend(['api_key' => 'mlsn.a01e8af3952910b2353a27a7affecf391615d73cdf2569eee6c319066fbcc36d']);
 
         $recipients = [
             new Recipient($emailAddress, 'Recipient'),
