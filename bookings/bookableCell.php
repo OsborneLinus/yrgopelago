@@ -29,11 +29,17 @@ class BookableCell
                 $this->bookedCell($cal->getCurrentDate());
         }
 
-        if (isset($_POST['date']) && $_POST['date'] === $cal->getCurrentDate()) {
+
+
+
+        if (
+            isset($_POST['newDates']) && count($_POST['newDates']) > 0
+            // check id dates exist in array
+            //  && $_POST['date'] === $cal->getCurrentDate() // old flow with one date, can be an option to check of valid sets date to this value
+        ) {
             $this->routeActions();
-            $_SESSION['date'] = $_POST['date'];
+            $_SESSION['newDates'] = array_keys($_POST['newDates']);
             header('Location: ../input.php');
-            exit;
         }
 
         return $cal->cellContent = $this->openCell($cal->getCurrentDate());
@@ -127,21 +133,20 @@ class BookableCell
 
     private function bookingForm(string $date): string
     {
-        return '
-        <form method="post" action="' . $this->currentURL . '">
-            <input type="hidden" name="book" value="' . $date . '" />
-            <input type="submit" value="Book" />
-        </form>
-    ';
+        return '<input name="newDates[' . $date . ']" type="checkbox">' .
+            '<input class="submit" type="submit" value="Book" />';
     }
 
     private function deleteForm(int $id): string
     {
-        return
-            '<form onsubmit="return confirm(\'Are you sure to cancel?\');" method="post" action="' . $this->currentURL . '">' .
+        // TODO denna kan du göra om till samma fast omvänt
+        $ret = '<form onsubmit="return confirm(\'Are you sure to cancel?\');" method="post" action="' . $this->currentURL . '">' .
             '<input type="hidden" name="delete" />' .
             '<input type="hidden" name="id" value="' . $id . '" />' .
             '<input class="submit" type="submit" value="Delete" />' .
             '</form>';
+
+
+        return '';
     }
 }

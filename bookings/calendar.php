@@ -68,32 +68,32 @@ class Calendar
         $this->currentMonth = $month;
         $this->daysInMonth = $this->_daysInMonth($month, $year);
 
-        ob_start();
-?>
-        <div id="calendar">
-            <div class="box">
-                <?php echo $this->_createNavi(); ?>
-            </div>
-            <div class="box-content">
-                <ul class="label">
-                    <?php echo $this->_createLabels(); ?>
-                </ul>
-                <div class="clear"></div>
-                <ul class="dates">
-                    <?php
-                    for ($i = 0; $i < $this->_weeksInMonth($month, $year); $i++) {
-                        for ($j = 1; $j <= 7; $j++) {
-                            echo $this->_showDay($i * 7 + $j, $attributes);
-                        }
-                    }
-                    ?>
-                </ul>
-                <div class="clear"></div>
-            </div>
-        </div>
-    <?php
+        $content = '<div id="calendar">
+        <form method="post">
 
-        return ob_get_clean();
+        ' .
+            '<div class="box">' .
+            $this->_createNavi() .
+            '</div>' .
+            '<div class="box-content">' .
+            '<ul class="label">' . $this->_createLabels() . '</ul>';
+        $content .= '<div class="clear"></div>';
+        $content .= '<ul class="dates">';
+
+        for ($i = 0; $i < $this->_weeksInMonth($month, $year); $i++) {
+            for ($j = 1; $j <= 7; $j++) {
+                $content .= $this->_showDay($i * 7 + $j, $attributes);
+            }
+        }
+        $content .= '</ul>';
+        $content .= '<div class="clear"></div>';
+        $content .= '</div>';
+        $content .= '
+
+        <input type="submit" name="hello">
+        </form>
+        </div>';
+        return $content;
     }
 
     private function _showDay($cellNumber, $attributes = false)
@@ -127,8 +127,8 @@ class Calendar
         $preMonth = $this->currentMonth == 1 ? 12 : intval($this->currentYear) - 1;
         $preYear = $this->currentMonth == 1 ? intval($this->currentYear) - 1 : $this->currentYear;
 
-        ob_start();
-    ?>
+
+?>
         <div class="header">
             <span class="title"><?php echo date('Y M', strtotime($this->currentYear . '-' . $this->currentMonth . '-1')); ?></span>
 
