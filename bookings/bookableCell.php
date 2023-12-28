@@ -12,6 +12,7 @@ class BookableCell
 
     private $currentURL;
 
+
     /**
      * BookableCell constructor.
      * @param Booking $booking
@@ -29,14 +30,12 @@ class BookableCell
                 $this->bookedCell($cal->getCurrentDate());
         }
 
-
-
-
         if (
             isset($_POST['newDates']) && count($_POST['newDates']) > 0
             // check id dates exist in array
             //  && $_POST['date'] === $cal->getCurrentDate() // old flow with one date, can be an option to check of valid sets date to this value
         ) {
+
             $this->routeActions();
             $_SESSION['newDates'] = array_keys($_POST['newDates']);
             header('Location: ../input.php');
@@ -46,53 +45,77 @@ class BookableCell
     }
 
 
-
     public function routeActions(): void
     {
         if (isset($_POST['delete'])) {
             $this->deleteBooking((int)$_POST['id']);
         }
 
+        if (isset($_POST['addNewBooking'])) {
 
-        if (isset($_POST['startDate']) && isset($_POST['endDate'])) {
-            $startDate = $_POST['startDate'];
-            $endDate = $_POST['endDate'];
-            $email = $_SESSION['email'];
-            $name = $_SESSION['name'];
 
-            $dates = $this->generateDates($startDate, $endDate);
+            if (isset($_POST['email']) && isset($_POST['name']) && isset($_POST['transferCode'])) {
 
-            foreach ($dates as $date) {
-                $this->addBooking($date, $email, $name);
+                // $this->addBookings();
+
+                print_r($_POST);
+                $name = htmlspecialchars($_POST['name']);
+                $email = (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
+                $transferCode = htmlspecialchars($_POST['transferCode']);
+                $dates = array_keys($_POST['newDates']);
+
+
+                // validera transferkoden från yrgopelag för att se om den är giltig att betala med.
+                $curlHandling = new CurlHandling();
+                // ska ändra värden beroende på klass på rum i framtiden.
+                $result = $curlHandling->transferCode($transferCode, '10');
+                // Lägg in pengarna på rätt konto efter validering.
+                $deposit = $curlHandling->deposit($transferCode);
+
+                // Lägg till värdena i databasen
+
+
+                foreach ($dates as $date) {
+                    $dateTime = DateTimeImmutable::createFromFormat('Y-m-d', $date);
+
+                    $dbState = $this->booking->add($dateTime, $email, $name);
+                }
+
+                if ($dbState) {
+                    // skickar du mail
+                    echo $body = 'Hej ' . $name . '!<br>Välkommen till oss!' . implode(", ", $dates);
+                    exit;
+                    /* $mailersendWrapper = new MailersendWrapper;
+                $sendstate = $mailersendWrapper->sendEmail($email, $body); */
+                }
+
+
+                /*     if ($sendstate) {
+                echo "mailet skickades, skicka mig ngn stans";
+            } else {
+                echo "mailet skickades INTE, skicka mig ngn stans";
             }
-
-            header('Location: ../mailersend/emailsend.php');
-            unset($_SESSION['email']);
-            unset($_SESSION['name']);
-        }
-    }
-    public function generateDates(string $startDate, string $endDate): array
-    {
-
-        $dates = [];
-        $startingDate = new DateTime($startDate);
-        $endDate = new DateTime($endDate);
-        while ($startingDate < $endDate) {
-            $dates[] = $startingDate->format('Y-m-d');
-            $startingDate->modify('+1 day');
+                */
+            } else {
+                echo "Not valid parameters for save";
+                exit;
+            }
         }
 
-        return $dates;
+        /**
+         * Controll input end
+         *
+         */
     }
 
     private function openCell(string $date): string
     {
-        return '<input type="checkbox" name="date[]" value="' . $date . '">';
+        return '<div class="open">' . $this->bookingForm($date) . '</div>';
     }
 
     private function bookedCell(string $date): string
     {
-        return '<div class="booked" style="background-color: gray;">' . $this->deleteForm($this->bookingId($date)) . '</div>';
+        return '<div class="booked">' . $this->deleteForm($this->bookingId($date)) . '</div>';
     }
 
     private function isDateBooked(string $date): bool
@@ -123,12 +146,21 @@ class BookableCell
         $this->booking->delete($id);
     }
 
-    private function addBooking(string $date, string $email, string $name): void
+
+    private function addBookings(string $date, string $email, string $name, string $roomType): void
     {
         $date = new DateTimeImmutable($date);
         $email = $_SESSION['email'];
         $name = $_SESSION['name'];
-        $this->booking->add($date, $email, $name);
+        $this->booking->add($date, $email, $name, $roomType);
+    }
+
+    private function addBooking(string $date, string $email, string $name, string $roomType): void
+    {
+        $date = new DateTimeImmutable($date);
+        $email = $_SESSION['email'];
+        $name = $_SESSION['name'];
+        $this->booking->add($date, $email, $name, $roomType);
     }
 
     private function bookingForm(string $date): string

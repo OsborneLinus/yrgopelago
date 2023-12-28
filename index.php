@@ -49,30 +49,14 @@ error_reporting(E_ALL); ?>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur eveniet, sint accusantium eum quos eligendi, optio ab maxime architecto inventore, magni mollitia aliquid accusamus praesentium et eaque dolorum officiis? Molestias?</p>
         </div>
     </section>
-    <section class="flex justify-center items-center gap-7 m-2 ">
-        <form action="input.php" method="post">
-            <select name="roomType" class="w-fit text-2xl">
-                <option value="superior">Superior</option>
-                <option value="deluxe">Deluxe</option>
-                <option value="standard">Standard</option>
-            </select>
-            <div class="">
-                <label for="startDate">Start Date:
-                    <input type="date" name="startDate">
-                </label>
-            </div>
-            <div>
-                <label for="endDate">End Date:
-                    <input type="date" name="endDate">
-                </label>
-            </div>
-            <button type="submit">Book</button>
-        </form>
-    </section>
-    <!--         <button id="showCalendar" class=" border-2 border-green-700">Date</button>
- -->
-    <?php /* require 'bookings/rendercalendar.php';
-                 */ ?>
+    <!--     <form method="get" id="myForm">
+        <section class="flex justify-center items-center gap-7 m-2 ">
+            <button type="button" name="superior" id="showCalendar" class=" border-2 border-green-700">Superior</button>
+            <button name="deluxe" id="showCalendar" class=" border-2 border-green-700">Deluxe</button>
+            <button name="standard" id="showCalendar" class=" border-2 border-green-700">Standard</button>
+        </section>
+    </form> -->
+
     <div>
         <div id="scrolling-section" class="relative">
             <div class="grid grid-cols-2 gap-4 text-center self-center">
@@ -82,6 +66,10 @@ error_reporting(E_ALL); ?>
                 <div class="bg-green-800 flex flex-col justify-center items-center">
                     <h1 class="text-6xl text-white">Superior Room</h1>
                     <p class="text-lg text-gray-300">2 Guests 1 Bed 15m2</p>
+                    <form action="input.php" method="get">
+                        <input type="hidden" name="roomType" value="superior">
+                        <button type="submit">Check availability</button>
+                    </form>
                 </div>
             </div>
             <div class=" grid grid-cols-2 gap-4 mt-10">
@@ -91,6 +79,9 @@ error_reporting(E_ALL); ?>
                 <div class="bg-green-800 flex flex-col justify-center items-center">
                     <h1 class="text-6xl text-white">Deluxe Room</h1>
                     <p class="text-lg text-gray-300">2 Guests 1 Bed 15m2</p>
+                    <form action="input.php" method="get">
+                        <input type="submit" name="deluxe" value="check availability"></input>
+                    </form>
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-4 mt-10">
@@ -100,6 +91,9 @@ error_reporting(E_ALL); ?>
                 <div class="bg-green-800 flex flex-col justify-center items-center">
                     <h1 class="text-6xl text-white">Standard Room</h1>
                     <p class="text-lg text-gray-300">2 Guests 1 Bed 15m2</p>
+                    <form action="input.php" method="get">
+                        <input type="submit" name="standard" value="check availability"></input>
+                    </form>
                 </div>
             </div>
         </div>

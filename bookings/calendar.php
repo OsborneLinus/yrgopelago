@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-class Calendar
+class calendar
+
 {
     private $dayLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     private $currentYear = 0;
@@ -47,6 +48,7 @@ class Calendar
 
     public function show($attributes = false)
     {
+
         $month = 1;
         $year = date("Y", time());
 
@@ -67,10 +69,10 @@ class Calendar
         $this->currentYear = $year;
         $this->currentMonth = $month;
         $this->daysInMonth = $this->_daysInMonth($month, $year);
-
         $content = '<div id="calendar">
         <form method="post">
-
+            <input type="hidden" name="addNewBooking">
+             <input type="hidden" value="' . $_GET['roomType'] . '" name="roomType">
         ' .
             '<div class="box">' .
             $this->_createNavi() .
@@ -90,7 +92,19 @@ class Calendar
         $content .= '</div>';
         $content .= '
 
-        <input type="submit" name="hello">
+
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br>
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" required><br>
+
+        <label for="transferCode">TransferCode: </label>
+        <input type="text" name="transferCode" required>
+
+        <input type="submit" value="Book" name="submitCalender">
+
         </form>
         </div>';
         return $content;
@@ -127,7 +141,7 @@ class Calendar
         $preMonth = $this->currentMonth == 1 ? 12 : intval($this->currentYear) - 1;
         $preYear = $this->currentMonth == 1 ? intval($this->currentYear) - 1 : $this->currentYear;
 
-
+        ob_start();
 ?>
         <div class="header">
             <span class="title"><?php echo date('Y M', strtotime($this->currentYear . '-' . $this->currentMonth . '-1')); ?></span>
