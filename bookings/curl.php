@@ -33,15 +33,8 @@ class CurlHandling
         if ($httpCode === 200) {
             $responseData = json_decode($response, true);
         } else {
-            echo "The fetch failed!";
+            echo "The fetch failed. HTTP ERROR:" . $httpCode;
         }
-
-
-        /*         if ($httpCode === 200) {
-            return 'cURL fetch was successfull!';
-        } else {
-            return 'cURL fetch failed!';
-        } */
     }
 
     public function deposit($transferCode)
