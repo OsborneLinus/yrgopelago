@@ -1,6 +1,8 @@
 <?php
 
 declare(strict_types=1);
+
+
 session_start();
 
 class BookableCell
@@ -58,7 +60,6 @@ class BookableCell
 
                 // $this->addBookings();
 
-                print_r($_POST);
                 $name = htmlspecialchars($_POST['name']);
                 $email = (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
                 $transferCode = htmlspecialchars($_POST['transferCode']);
@@ -68,7 +69,7 @@ class BookableCell
                 // validera transferkoden från yrgopelag för att se om den är giltig att betala med.
                 $curlHandling = new CurlHandling();
                 // ska ändra värden beroende på klass på rum i framtiden.
-                $result = $curlHandling->transferCode($transferCode, '10');
+                $result = $curlHandling->transferCode($transferCode, $dates, $_GET['roomType']);
                 // Lägg in pengarna på rätt konto efter validering.
                 $deposit = $curlHandling->deposit($transferCode);
 
@@ -82,7 +83,7 @@ class BookableCell
                 }
 
                 if ($dbState) {
-                    // skickar du mail
+                    // skicka mail
                     echo $body = 'Hej ' . $name . '!<br>Välkommen till oss!' . implode(", ", $dates);
                     exit;
                     /* $mailersendWrapper = new MailersendWrapper;

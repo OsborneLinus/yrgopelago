@@ -80,7 +80,8 @@ error_reporting(E_ALL); ?>
                     <h1 class="text-6xl text-white">Deluxe Room</h1>
                     <p class="text-lg text-gray-300">2 Guests 1 Bed 15m2</p>
                     <form action="input.php" method="get">
-                        <input type="submit" name="deluxe" value="check availability"></input>
+                        <input type="hidden" name="roomType" value="deluxe">
+                        <button type="submit">Check availability</button>
                     </form>
                 </div>
             </div>
@@ -92,7 +93,8 @@ error_reporting(E_ALL); ?>
                     <h1 class="text-6xl text-white">Standard Room</h1>
                     <p class="text-lg text-gray-300">2 Guests 1 Bed 15m2</p>
                     <form action="input.php" method="get">
-                        <input type="submit" name="standard" value="check availability"></input>
+                        <input type="hidden" name="roomType" value="standard">
+                        <button type="submit">Check availability</button>
                     </form>
                 </div>
             </div>

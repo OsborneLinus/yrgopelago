@@ -22,6 +22,8 @@
     }
 
 
+
+
     $booking = new Booking(
         'hotel_booking',
         '127.0.0.1',
