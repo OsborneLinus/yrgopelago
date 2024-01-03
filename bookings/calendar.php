@@ -95,15 +95,15 @@ class calendar
 
 
         <label for="email">Email:</label>
-        <input type="email" name="email" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
 
         <label for="name">Name:</label>
-        <input type="text" name="name" required><br>
+        <input type="text" name="name" placeholder="Name" required><br>
 
         <label for="transferCode">TransferCode: </label>
-        <input type="text" name="transferCode" required>
+        <input type="text" name="transferCode" placeholder="TransferCode" required>
 
-        <input type="submit" value="Book" name="submitCalender">
+        <input class="border-solid rounded-md p-1 text-white bg-green-950" type="submit" value="Book" name="submitCalender">
 
         </form>
         </div>';

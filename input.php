@@ -87,7 +87,7 @@ if (isset($_POST['email']) && isset($_POST['name']) && isset($_POST['transferCod
 <body>
     <header>
         <div class="flex justify-center">
-            <nav class="w-5/6 h-16 relative top-0 z-10 flex bg-green-900 text-white items-center justify-end space-x-10 px-10">
+            <nav class="w-5/6 h-16 relative top-0 z-10 flex bg-green-950 text-white items-center justify-end space-x-10 px-10">
                 <p class="">YRGOPELAGO</p>
                 <a href="index.php">HOME</a>
                 <a href="#">ROOMS</a>
