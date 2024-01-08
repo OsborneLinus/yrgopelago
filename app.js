@@ -50,12 +50,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const roomType = new URLSearchParams(window.location.search);
         // Check if a query parameter exists
         if (roomType.has('roomType')) {
-          console.log('Parameter exists');
         }
 
         // Get the value of a query parameter
         const value = roomType.get('roomType');
-        console.log(value);
 
         let costPerCheckbox;
         if (value === 'superior') {
