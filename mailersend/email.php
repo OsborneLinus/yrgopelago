@@ -24,7 +24,7 @@ class MailersendWrapper
             ->setFrom('admin@theduckside.se')
             ->setFromName('Your Name')
             ->setRecipients($recipients)
-            ->setSubject('Subject')
+            ->setSubject('Booking')
             ->setHtml($body)
             ->setText($body);
 

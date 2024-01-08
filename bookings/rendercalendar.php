@@ -5,9 +5,6 @@
     require_once 'bookableCell.php';
     require_once 'input.php';
 
-
-
-
     // Get current room type
     $roomType = '';
     if (isset($_GET['roomType'])) {
@@ -21,8 +18,9 @@
         exit;
     }
 
-
-
+    $chosenRoom = '<p id="chosenRoom">Booking Calendar for room type: ' . ucfirst($roomType)
+        . '</p>';
+    echo $chosenRoom;
 
     $booking = new Booking(
         'hotel_booking',

@@ -1,6 +1,6 @@
 div#calendar {
   margin: 0px auto;
-  margin-top: 2rem;
+  margin-top: 1rem;
   padding: 0px;
   width: 300px;
 }
@@ -180,7 +180,39 @@ div.booked {
   transition-delay: 0.4s;
 }
 
+#chosenRoom {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding: 10px;
+  font-weight: 500;
+}
+
+#homepage-btn {
+  background-color: #052e16;
+  color: #fff;
+  border-radius: 0.375rem;
+  padding: 0.2rem;
+}
+
 .scroll-animation {
   opacity: 1;
   transform: translateX(0);
+}
+.hamburger-toggle {
+  height: 0;
+}
+
+.hamburger-toggle > div {
+  background-color: transparent;
+}
+
+.hamburger-toggle > div::before {
+  content: '';
+  transform: translateY(0) rotate(45deg);
+}
+
+.hamburger-toggle > div::after {
+  content: '';
+  transform: translateY(0) rotate(-45deg);
 }

@@ -34,8 +34,7 @@ class BookableCell
 
         if (
             isset($_POST['newDates']) && count($_POST['newDates']) > 0
-            // check id dates exist in array
-            //  && $_POST['date'] === $cal->getCurrentDate() // old flow with one date, can be an option to check of valid sets date to this value
+            // check if dates exist in array
         ) {
 
             $this->routeActions();
@@ -70,6 +69,7 @@ class BookableCell
                 $curlHandling = new CurlHandling();
                 // ska ändra värden beroende på klass på rum i framtiden.
                 $result = $curlHandling->transferCode($transferCode, $dates, $_GET['roomType']);
+                $totalcost = $curlHandling->getTotalCost();
                 // Lägg in pengarna på rätt konto efter validering.
                 $deposit = $curlHandling->deposit($transferCode);
 
@@ -84,19 +84,23 @@ class BookableCell
 
                 if ($dbState) {
                     // skicka mail
-                    echo $body = 'Hej ' . $name . '!<br>Välkommen till oss!' . implode(", ", $dates);
-                    exit;
-                    /* $mailersendWrapper = new MailersendWrapper;
-                $sendstate = $mailersendWrapper->sendEmail($email, $body); */
+                    $body = 'Hej ' . $name . '!<br>Välkommen till oss!' . implode(", ", $dates) . '<br> Du har bokat rummet ' . ucfirst($_GET['roomType']) . '<br> Kostnad: ' . $totalcost;
+
+                    $mailersendWrapper = new MailersendWrapper;
+                    $sendstate = $mailersendWrapper->sendEmail($email, $body);
+
+                    if ($sendstate) {
+                        echo "Bokning genomförd! <br> Du kommer att få ett bekräftelsemejl skickat till din inkorg. ";
+                        $input = '<a id="homepage-btn" href="index.php">Back to Homepage</a>';
+                        echo $input;
+                        exit;
+                    } else {
+                        echo "Vi kunde inte genomföra bokningen. Vänligen försök igen!";
+                        $input = '<a id="homepage-btn" href="index.php">Back to Homepage</a>';
+                        echo $input;
+                        exit;
+                    }
                 }
-
-
-                /*     if ($sendstate) {
-                echo "mailet skickades, skicka mig ngn stans";
-            } else {
-                echo "mailet skickades INTE, skicka mig ngn stans";
-            }
-                */
             } else {
                 echo "Not valid parameters for save";
                 exit;
@@ -108,6 +112,8 @@ class BookableCell
          *
          */
     }
+
+
 
     private function openCell(string $date): string
     {
@@ -145,15 +151,6 @@ class BookableCell
     private function deleteBooking(int $id): void
     {
         $this->booking->delete($id);
-    }
-
-
-    private function addBookings(string $date, string $email, string $name, string $roomType): void
-    {
-        $date = new DateTimeImmutable($date);
-        $email = $_SESSION['email'];
-        $name = $_SESSION['name'];
-        $this->booking->add($date, $email, $name, $roomType);
     }
 
     private function addBooking(string $date, string $email, string $name, string $roomType): void

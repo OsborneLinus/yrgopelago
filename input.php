@@ -86,16 +86,21 @@ if (isset($_POST['email']) && isset($_POST['name']) && isset($_POST['transferCod
 
 <body>
     <header>
-        <div class="flex justify-center">
-            <nav class="w-5/6 h-16 relative top-0 z-10 flex bg-green-950 text-white items-center justify-end space-x-10 px-10">
-                <p class="">YRGOPELAGO</p>
-                <a href="index.php">HOME</a>
+        <div class="flex">
+            <nav id="navbar" class="hidden w-full md:flex bg-green-950 md: justify-center h-16 relative top-0 z-10 text-white items-center  space-x-10 px-10 rounded-b-2xl">
+                <p class="hidden md:block">YRGOPELAGO</p>
+                <a class="pl-2" href="index.php">HOME</a>
                 <a href="#">ROOMS</a>
                 <a href="#">BOOKINGS</a>
                 <a href="#">ABOUT US</a>
             </nav>
+            <div id="toggleMenu" class="grid place-content-end absolute top-10 pl-8 md:hidden">
+                <div class="z-10 w-12 h-1 transition-all duration-150 bg-white rounded-full before:content-[''] before:absolute before:w-12 before:h-1 before:bg-white before:rounded-full before:-translate-y-4 before:transition-all before:duration-150 after:content-[''] after:absolute after:w-12 after:h-1 after:bg-white after:rounded-full after:translate-y-4 after:transition-all after:duration-150"></div>
+            </div>
         </div>
+
     </header>
 
-
+    <script src=" app.js">
+    </script>
     <?php require 'bookings/rendercalendar.php'; ?>

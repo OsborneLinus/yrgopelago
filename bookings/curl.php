@@ -1,6 +1,8 @@
 <?php
 class CurlHandling
 {
+    private $totalCost;
+
     public function transferCode($transferCode, $dates, $roomType)
     {
         $baseCost = 0;
@@ -11,11 +13,11 @@ class CurlHandling
         } elseif ($roomType === 'superior') {
             $baseCost = 15;
         };
-        $totalCost = count($dates) * $baseCost;
+        $this->totalCost = count($dates) * $baseCost;
 
         $data = [
             'transferCode' => $transferCode,
-            'totalcost' => $totalCost
+            'totalcost' => $this->totalCost
         ];
 
 
@@ -35,6 +37,11 @@ class CurlHandling
         } else {
             echo "The fetch failed. HTTP ERROR:" . $httpCode;
         }
+    }
+
+    public function getTotalCost()
+    {
+        return $this->totalCost;
     }
 
     public function deposit($transferCode)

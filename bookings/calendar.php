@@ -94,16 +94,16 @@ class calendar
 
 
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" placeholder="Email" required><br>
-
-        <label for="name">Name:</label>
-        <input type="text" name="name" placeholder="Name" required><br>
-
-        <label for="transferCode">TransferCode: </label>
-        <input type="text" name="transferCode" placeholder="TransferCode" required>
-
-        <input class="border-solid rounded-md p-1 text-white bg-green-950" type="submit" value="Book" name="submitCalender">
+        <label for="email">Email:
+        <input id="email" type="email" name="email" placeholder="Email" required><br>
+        </label>
+        <label for="name">Name:
+        <input id="name" type="text" name="name" placeholder="Name" required><br>
+        </label>
+        <label for="transferCode">TransferCode:
+        <input id="transferCode" type="text" name="transferCode" placeholder="TransferCode" required>
+        </label>
+        <input id="book-btn" class="border-solid rounded-md p-1 text-white bg-green-950" type="submit" value="Book" name="submitCalender">
 
         </form>
         </div>';
