@@ -5,16 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="stylesheet" href="/styles/styles.css" />
-    <title>Yrgopelago</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <title>Casa Olive</title>
 </head>
 
 <body>
     <header>
         <div class=" flex">
             <nav id="navbar" class="hidden w-full text-xs md:flex md:text-lg bg-green-950 md: justify-center h-16 relative top-0 z-10 text-white items-center  space-x-10 px-10 rounded-b-2xl">
-                <p class="hidden md:block">YRGOPELAGO</p>
+                <p class="hidden md:block">CASA OLIVE</p>
                 <a class="pl-2" href="index.php">HOME</a>
                 <a href="#">ROOMS</a>
                 <a href="#">BOOKINGS</a>

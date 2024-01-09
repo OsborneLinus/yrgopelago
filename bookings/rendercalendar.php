@@ -22,6 +22,16 @@
         . '</p>';
     echo $chosenRoom;
 
+    // setup for live environment to database
+    /*             $booking = new Booking(
+        'theduckside_sehotel_booking',
+        'theduckside.se.mysql',
+        'theduckside_sehotel_booking',
+        'hotels',
+        $roomType
+    );
+ */
+    // local setup for localhost:
     $booking = new Booking(
         'hotel_booking',
         '127.0.0.1',

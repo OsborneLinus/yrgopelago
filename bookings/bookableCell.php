@@ -84,7 +84,7 @@ class BookableCell
 
                 if ($dbState) {
                     // skicka mail
-                    $body = 'Hej ' . $name . '!<br>Välkommen till oss!' . implode(", ", $dates) . '<br> Du har bokat rummet ' . ucfirst($_GET['roomType']) . '<br> Kostnad: ' . $totalcost;
+                    $body = 'Hej ' . $name . '!<br>Välkommen till oss!' . implode(", ", $dates) . '<br> Du har bokat rummet ' . ucfirst($_GET['roomType']) . '<br> Kostnad: $' . $totalcost;
 
                     $mailersendWrapper = new MailersendWrapper;
                     $sendstate = $mailersendWrapper->sendEmail($email, $body);
