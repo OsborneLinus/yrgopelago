@@ -14,9 +14,9 @@
         <div class=" flex">
             <nav id="navbar" class="hidden w-full text-xs md:flex md:text-lg bg-green-950 md: justify-center h-16 relative top-0 z-10 text-white items-center  space-x-10 px-10 rounded-b-2xl">
                 <p class="hidden md:block">CASA OLIVE</p>
-                <a class="pl-2" href="index.php">HOME</a>
-                <a href="#">ROOMS</a>
-                <a href="#">BOOKINGS</a>
+                <a class="pl-2 hover:text-green-700" href="index.php">HOME</a>
+                <a class="hover:text-green-700" href="#rooms">ROOMS</a>
+                <a class="hover:text-green-700" href="#features">FEATURES</a>
                 <a href="#">ABOUT US</a>
             </nav>
             <div id="toggleMenu" class="grid place-content-end absolute top-10 pl-4 md:hidden">

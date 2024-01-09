@@ -163,7 +163,7 @@ class BookableCell
 
     private function bookingForm(string $date): string
     {
-        return '<input name="newDates[' . $date . ']" type="checkbox">' .
+        return '<input id="calendar-checkbox" name="newDates[' . $date . ']" type="checkbox"/>' .
             '<input class="submit" type="submit" value="Book" />';
     }
 

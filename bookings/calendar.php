@@ -103,7 +103,14 @@ class calendar
         <label for="transferCode">TransferCode:
         <input id="transferCode" type="text" name="transferCode" placeholder="TransferCode" required>
         </label>
-        <input id="book-btn" class="border-solid rounded-md p-1 mb-10 text-white bg-green-950" type="submit" value="Book" name="submitCalender">
+        <label for="features">Features:
+            <select name="features" id="features">
+            <option value="none">None</option>
+            <option value="vineyard">Vineyard</option>
+            <option value="skydiving">Skydiving</option>
+            <option value="massage">Massage</option>
+            </select><br>
+        <input id="book-btn" class="border-solid rounded-md p-1 mb-10 text-white bg-green-950 hover:bg-green-700" type="submit" value="Book" name="submitCalender">
 
         </form>
         </div>';

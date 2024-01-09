@@ -1,10 +1,10 @@
 <section class="flex justify-center items-center h-screen">
     <div class="h-screen bg-cover bg-fixed bg-no-repeat absolute top-0 right-0 left-0" style="background-image: url(media/SunbedsOnShore.jpg)">
-        <p class="z-20 absolute top-52 text-9xl text-white font-serif pl-6">CASA OLIVE </p>
+        <p class="z-20 absolute top-52 text-9xl text-white font-serif pl-6 ">CASA OLIVE </p>
     </div>
 </section>
 
-<section class="flex flex-col m-8 h-full md:m-8 md:grid grid-cols-2">
+<section class="flex border-green-950 border-solid border-2 rounded-lg flex-col m-8 h-full md:m-8 md:grid grid-cols-2">
     <div class="flex flex-col p-4">
         <h2 class="text-2xl">Enchance your feelings!</h2>
         <p>Welcome to our tropical paradise, a secluded haven nestled on the fringes of pristine beaches and lush landscapes—an island retreat where enchantment awaits at every turn. Our hotel, a beacon of luxury, is not just a respite for the soul but a gateway to a world where nature's embrace and refined indulgence harmonize seamlessly.</p>
@@ -27,7 +27,7 @@
     </div>
 </section>
 
-<section class="flex flex-col m-8">
+<section class="flex flex-col m-8" id="rooms">
     <a class="custom" href="">
         <h1 class="font-semibold text-5xl text-green-900 text-center">Rooms</h1>
     </a>
@@ -40,7 +40,7 @@
             <p class="text-lg text-gray-300">2 Guests 1 King Size Bed 30m2</p>
             <form action="input.php" method="get">
                 <input type="hidden" name="roomType" value="superior">
-                <button class="bg-white mb-1 rounded-md px-1" type="submit">Check availability</button>
+                <button class="bg-white mb-1 rounded-md px-1 hover:bg-green-700" type="submit">Check availability</button>
             </form>
         </div>
     </div>
@@ -53,7 +53,7 @@
             <p class="text-lg text-gray-300">2 Guests 1 Queen Size Bed 22m2</p>
             <form action="input.php" method="get">
                 <input type="hidden" name="roomType" value="deluxe">
-                <button class="bg-white mb-1 rounded-md px-1" type="submit">Check availability</button>
+                <button class="bg-white mb-1 rounded-md px-1 hover:bg-green-700" type="submit">Check availability</button>
             </form>
         </div>
     </div>
@@ -66,13 +66,13 @@
             <p class="text-lg text-gray-300">2 Guests 2 Twin Size Beds 15m2</p>
             <form action="input.php" method="get">
                 <input type="hidden" name="roomType" value="standard">
-                <button class="bg-white mb-1 rounded-md px-1" type="submit">Check availability</button>
+                <button class="bg-white mb-1 rounded-md px-1 hover:bg-green-700" type="submit">Check availability</button>
             </form>
         </div>
     </div>
 </section>
 <section>
-    <div class="m-8">
+    <div class="m-8" id="features">
         <h1 class="custom flex justify-center text-2xl font-semibold text-green-900">Features</h1>
         <div class="flex flex-col md:flex-row gap-10 items-center justify-center">
             <div class="custom relative group">
@@ -114,7 +114,7 @@
             </h2>
         </label>
         <input type="email" name="email" placeholder="Email" class="border-solid border-2 p-1 border-green-900 rounded-md">
-        <button class="bg-green-900 text-white rounded-md p-1" type="submit">Subscribe</button>
+        <button class="bg-green-900 text-white rounded-md p-1 hover:bg-green-700" type="submit">Subscribe</button>
     </form>
 </section>
 
