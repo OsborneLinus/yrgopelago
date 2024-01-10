@@ -1,4 +1,4 @@
-![Animated GIF](<iframe src="https://giphy.com/embed/0lGOCxq1V8N7E1icuQ" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/HBOMax-matrix-trilogy-matrixonhbomax-0lGOCxq1V8N7E1icuQ">via GIPHY</a></p>)
+
 
 # ISLANDISTAN
 
