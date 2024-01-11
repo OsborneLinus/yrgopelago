@@ -57,20 +57,22 @@ class BookableCell
 
             if (isset($_POST['email']) && isset($_POST['name']) && isset($_POST['transferCode'])) {
 
-                // $this->addBookings();
-
                 $name = htmlspecialchars($_POST['name']);
                 $email = (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
                 $transferCode = htmlspecialchars($_POST['transferCode']);
                 $dates = array_keys($_POST['newDates']);
+                $features = $_POST['features'];
 
 
                 // validera transferkoden från yrgopelag för att se om den är giltig att betala med.
                 $curlHandling = new CurlHandling();
-                // ska ändra värden beroende på klass på rum i framtiden.
+                // make sure that we send the correct data to transfercode validation
                 $result = $curlHandling->transferCode($transferCode, $dates, $_GET['roomType']);
+                // get the featurecost from curl.php to be able to use it in the body of the email
+                $featureCost = $curlHandling->calculateFeatureCost($features);
+                // get the totalcost of the stay from curl.php to use it in the body of the email
                 $totalcost = $curlHandling->getTotalCost();
-                // Lägg in pengarna på rätt konto efter validering.
+                // make sure that the money is being placed on the correct account after validation
                 $deposit = $curlHandling->deposit($transferCode);
 
                 // Lägg till värdena i databasen
@@ -79,23 +81,35 @@ class BookableCell
                 foreach ($dates as $date) {
                     $dateTime = DateTimeImmutable::createFromFormat('Y-m-d', $date);
 
-                    $dbState = $this->booking->add($dateTime, $email, $name);
+                    $dbState = $this->booking->add($dateTime, $email, $name, $features);
                 }
 
                 if ($dbState) {
                     // skicka mail
-                    $body = 'Hej ' . $name . '!<br>Välkommen till oss!' . implode(", ", $dates) . '<br> Du har bokat rummet ' . ucfirst($_GET['roomType']) . '<br> Kostnad: $' . $totalcost;
+                    $body = 'Hello ' . $name . '!<br>Welcome to Casa Olive<br>
+                    We are happy that you have chosen to stay at Casa Olive and wish you a happy stay. <br> Down below are some important information about your stay: <br>
+                    Island: Islandistan <br>
+                    Dates: ' . implode(", ", $dates) . '<br>
+                    Room Type: ' . ucfirst($_GET['roomType']) . '
+                    <br>Feature: ' . ucfirst($_POST['features']) . '
+                    <br>Cost for feature: $' . $featureCost .
+                        '<br>Totalcost: $' . $totalcost .
+                        '<br><br>
+                         Mvh Linus Holm ';
+
 
                     $mailersendWrapper = new MailersendWrapper;
                     $sendstate = $mailersendWrapper->sendEmail($email, $body);
 
                     if ($sendstate) {
-                        echo "Bokning genomförd! <br> Du kommer att få ett bekräftelsemejl skickat till din inkorg. ";
+                        $confirm = '<p class="mt-20"><span class="font-semibold">Thank you for choosing Casa Olive!</span> Your booking has been successfully confirmed. <br> You will receive a confirmation email shortly with all the details.</p>';
+                        echo $confirm;
                         $input = '<a id="homepage-btn" href="index.php">Back to Homepage</a>';
                         echo $input;
                         exit;
                     } else {
-                        echo "Vi kunde inte genomföra bokningen. Vänligen försök igen!";
+                        $confirm = '<p class="pt-18">We could not complete the booking. Please try again!</p>';
+                        echo $confirm;
                         $input = '<a id="homepage-btn" href="index.php">Back to Homepage</a>';
                         echo $input;
                         exit;
@@ -112,8 +126,6 @@ class BookableCell
          *
          */
     }
-
-
 
     private function openCell(string $date): string
     {
