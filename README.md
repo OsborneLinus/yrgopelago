@@ -35,6 +35,10 @@ Full setup and guide of use can be found via: https://github.com/mailersend/mail
 # cURL Fetch 
 The curl fetch on curl.php, is fetching data from https://www.yrgopelag.se/centralbank/ - This site generates the transfercodes for the transaction, and the API has built in logic to check if a transfercode have been used or not. 
 
+# Calendar 
+The foundation for my site is the calendar which i have copied from this site: https://startutorial.com/view/how-to-build-a-php-booking-calendar-with-mysql 
+No external downloads required for this calendar to work. 
+
 # Code review
 
 1. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
