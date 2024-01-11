@@ -17,6 +17,11 @@ In my project i am using vanilla PHP, with vanilla javascript.
 
 The project is using Tailwind CSS via the CDN URL that is added at the top of the page. If going for a larger project it will need to be installed with NPM Install tailwindcss 
 
+# mySQL 
+
+For use of the database structure you need to install mySQL to your computer or use an online hosting site for the setup of mySQL. 
+I have installed SQLTools as an extension in VScode for me to be able to see the database inside vsCode at all times. 
+
 # Mailersend
 To send emails to the end user after a successfull booking i am using mailersend API, 
 https://developers.mailersend.com/?_gl=1*fppzr0*_gcl_aw*R0NMLjE3MDIyOTI4NzIuQ2p3S0NBaUFnOXVyQmhCX0Vpd0Fndzg4bVR5M2FmZU9JS01neElZcWl0Z3NvelNnOEN4Z3U3bWFhY0dleEJYNHRZMzg5eFJiSnd0NnV4b0N6NGNRQXZEX0J3RQ..*_gcl_au*MTU4ODg1MzcxMS4xNzAxOTU5MjI2 
