@@ -1,7 +1,7 @@
 <footer>
     <div class="flex w-full h-72 bg-green-950 pt-10 justify-center text-white">
         <div class="flex flex-col gap-2 pr-20 ">
-            <p class="text-xl">YRGOPELAGO</p>
+            <p class="text-xl">Casa Olive</p>
             <p class="pt-10">031-123 123</p>
             <p>Yrgopelagio 2, Islandistan</p>
         </div>

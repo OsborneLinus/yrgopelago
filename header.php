@@ -13,7 +13,7 @@
     <header>
         <div class=" flex">
             <nav id="navbar" class="hidden w-full text-xs md:flex md:text-lg bg-green-950 md: justify-center h-16 relative top-0 z-10 text-white items-center  space-x-10 px-10 rounded-b-2xl">
-                <p class="hidden md:block">CASA OLIVE</p>
+                <a class="hidden md:block hover:text-green-700 text-xl" href="index.php">CASA OLIVE</a>
                 <a class="pl-2 hover:text-green-700" href="index.php">HOME</a>
                 <a class="hover:text-green-700" href="#rooms">ROOMS</a>
                 <a class="hover:text-green-700" href="#features">FEATURES</a>

@@ -5,15 +5,24 @@ const theAnimation = document.querySelectorAll('.custom');
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('scroll-animation');
+      if (
+        entry.isIntersecting &&
+        !entry.target.classList.contains('scroll-animation')
+      ) {
+        if (entry.target.classList.contains('second-slide')) {
+          entry.target.classList.add('scroll-animation-right');
+        } else {
+          entry.target.classList.add('scroll-animation');
+        }
       } else {
         entry.target.classList.remove('scroll-animation');
+        entry.target.classList.remove('scroll-animation-right');
       }
     });
   },
-  { threshold: 0.2 }
+  { threshold: 0.08 }
 );
+
 for (let i = 0; i < theAnimation.length; i++) {
   const elements = theAnimation[i];
   observer.observe(elements);

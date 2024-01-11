@@ -173,12 +173,6 @@ div.booked {
   position: relative;
   top: 1px;
 }
-.custom {
-  opacity: 0;
-  transform: translateX(-300px);
-  transition: all 0.7s ease-out;
-  transition-delay: 0.4s;
-}
 
 #chosenRoom {
   display: flex;
@@ -196,8 +190,33 @@ div.booked {
 }
 
 .scroll-animation {
-  opacity: 1;
-  transform: translateX(0);
+  animation: slideInLeft 1s ease-in-out;
+}
+
+.scroll-animation-right {
+  animation: slideInRight 1s ease-in-out;
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 .hamburger-toggle {
   height: 0;

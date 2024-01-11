@@ -1,4 +1,3 @@
-
     <?php
     require_once 'calendar.php';
     require_once 'bookings.php';
@@ -30,7 +29,7 @@
         'hotels',
         $roomType
     );
- */
+     */
     // local setup for localhost:
     $booking = new Booking(
         'hotel_booking',
