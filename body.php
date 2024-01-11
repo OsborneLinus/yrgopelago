@@ -1,7 +1,7 @@
 <section class="flex justify-center items-center h-screen">
-    <div class="h-screen bg-cover bg-fixed bg-no-repeat absolute top-0 right-0 left-0" style="background-image: url(media/SunbedsOnShore.jpg)">
-        <p class="z-20 absolute top-52 text-7xl text-white font-serif md:text-9xl">CASA OLIVE <br><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
-
+    <div>
+        <img class="w-full h-full absolute object-cover top-0 left-0" src="media/SunbedsOnShore.jpg" alt="">
+        <p class="z-20 absolute left-0 top-52 text-7xl text-white font-serif md:text-9xl">CASA OLIVE <br><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
     </div>
 </section>
 
