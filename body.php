@@ -1,6 +1,7 @@
 <section class="flex justify-center items-center h-screen">
     <div class="h-screen bg-cover bg-fixed bg-no-repeat absolute top-0 right-0 left-0" style="background-image: url(media/SunbedsOnShore.jpg)">
-        <p class="z-20 absolute top-52 text-7xl text-white font-serif md:text-9xl">CASA OLIVE</p>
+        <p class="z-20 absolute top-52 text-7xl text-white font-serif md:text-9xl">CASA OLIVE <br><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
+
     </div>
 </section>
 
@@ -26,11 +27,11 @@
     </div>
 </section>
 
-<section class="custom flex flex-col m-8" id="rooms">
+<section class="flex flex-col m-8" id="rooms">
     <a class="" href="">
-        <h1 class="font-semibold text-5xl text-green-900 text-center">Rooms</h1>
+        <h1 class="mb-10 font-semibold text-5xl text-green-900 text-center">Rooms</h1>
     </a>
-    <div class="custom flex flex-col sm:grid grid-cols-2 text-center self-center">
+    <div class="custom mb-10 flex flex-col sm:grid grid-cols-2 text-center self-center">
         <h1 class="text-2xl md:text-2xl col-span-2 lg:text-4xl">Superior Room</h1>
 
         <div>
@@ -38,6 +39,8 @@
         </div>
         <div class="bg-green-950 grid grid-cols-2 grid-rows-1 justify-center items-center rounded-b-2xl sm:rounded-none sm:rounded-r-2xl">
             <p class="text-lg text-gray-300">2 Guests 1 King Size Bed 30m2</p>
+
+
             <form action="input.php" method="get">
                 <input type="hidden" name="roomType" value="superior">
                 <button class="px-2 py-3 mr-2 bg-gradient-to-r from-green-900 to-green-950 text-white font-bold rounded-md transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg md:px-5" type="submit">Check availability</button>
@@ -45,7 +48,7 @@
         </div>
 
     </div>
-    <div class="custom second-slide flex flex-col sm:grid grid-cols-2 mt-5 text-center self-center">
+    <div class="custom mb-10 second-slide flex flex-col sm:grid grid-cols-2 mt-5 text-center self-center">
         <h1 class="text-2xl sm:text-2xl col-span-2 lg:text-4xl">Deluxe Room</h1>
         <div class="bg-green-950 grid grid-cols-2 grid-rows-1 justify-center items-center rounded-t-2xl sm:rounded-none sm:rounded-l-2xl">
             <p class="text-lg text-gray-300">2 Guests 1 Queen Size Bed 22m2</p>
