@@ -41,13 +41,13 @@ No external downloads required for this calendar to work.
 
 # Code review
 
-1. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-2. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-3. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-4. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-5. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-6. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-7. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-8. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-9. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-10. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
+1. input.php:5 - Instead of hard coding the path use `__DIR__`.
+2. index.php:7 - body.php seams to be only required in index.php, move body.php directly in to index.php would make it more clear that it is the home page.
+3. body.php:44-47, 55-58, 73-76 - The form acts like a link to the input.php with query roomType, it's cleaner to use an `<a>` tag and include the formType in the href `/input.php?roomType=superior` no need for a hidden input field.
+4. rendercalendar.php:2-5 - no such file as input.php in bookings folder, bookings.php and bookableCell is already required in input.php from the root directory which requires reandercalender.php
+5. rendercalendar.php:8-13 - roomType comes from the form with method GET but roomType POST is set in the calender but dose not seam to be used in the context of rendercalendar.php so this can be done in a one liner `$roomType = $_GET["roomType"] ?? ""`
+6. rendercalendar.php:14-18 - If roomType is not set you echo this to the user, but maybe give an option to select a room or navigate them to the home page where the rooms are located.
+7. app.js:5-24 - Nested if/else statements looks a bit messy, maybe the nested if else that check if entry contains second-slide could be in a variable `isSecondSlide` and use it in a ternary operator as the argument in the add() method to conditionally add scroll-animation or scroll-animation-right. You are removing both classes from the same entry with two remove functions the remove() method takes multiple strings as an argument `remove('scroll-animation', 'scroll-animation-right')`
+8. app.js:26-29 - The for loop that sets an intersection observer on all animation elements works great but this could be done in a one liner as well with a forEach e.g `theAnimation.forEach((animation) => observer.observe(animation));`
+9. app.js:43-91 - This seams to be specific for input.php page where you book the room maybe have this in a separate js file and only use it when a user is on that page, when you are on index.php you get a typeError in the console that parentNode from book-btn is null
+10. app.js:68-86 - A lot of if else checks this would be a bit cleaner with a switch case instead and i see a potential issue if you would change the price of the rooms your js code would not know about the price change unless you remember to update the price in the js file as well.
