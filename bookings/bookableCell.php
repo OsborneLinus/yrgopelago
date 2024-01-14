@@ -55,7 +55,7 @@ class BookableCell
         if (isset($_POST['addNewBooking'])) {
 
 
-            if (isset($_POST['email']) && isset($_POST['name']) && isset($_POST['transferCode'])) {
+            if (isset($_POST['email']) && isset($_POST['name']) && isset($_POST['transferCode']) && isset($_POST['newDates'])) {
 
                 $name = htmlspecialchars($_POST['name']);
                 $email = (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));

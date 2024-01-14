@@ -31,7 +31,7 @@
     <a class="" href="">
         <h1 class="mb-10 font-semibold text-5xl text-green-900 text-center">Rooms</h1>
     </a>
-    <div class="custom mb-10 flex flex-col sm:grid grid-cols-2 text-center self-center">
+    <div class="custom mb-10 sm:grid grid-cols-2 text-center self-center">
         <h1 class="text-2xl md:text-2xl col-span-2 lg:text-4xl">Superior Room</h1>
 
         <div>
@@ -48,7 +48,7 @@
         </div>
 
     </div>
-    <div class="custom mb-10 second-slide flex flex-col sm:grid grid-cols-2 mt-5 text-center self-center">
+    <div class="custom mb-10 second-slide sm:grid grid-cols-2 mt-5 text-center self-center">
         <h1 class="text-2xl sm:text-2xl col-span-2 lg:text-4xl">Deluxe Room</h1>
         <div class="bg-green-950 grid grid-cols-2 grid-rows-1 justify-center items-center rounded-t-2xl sm:rounded-none sm:rounded-l-2xl">
             <p class="text-lg text-gray-300">2 Guests 1 Queen Size Bed 22m2</p>
@@ -62,7 +62,7 @@
         </div>
 
     </div>
-    <div class="custom flex flex-col sm:grid grid-cols-2 text-center mt-5 self-center">
+    <div class="custom sm:grid grid-cols-2 text-center mt-5 self-center">
         <h1 class="text-2xl md:text-2xl col-span-2 lg:text-4xl">Standard Room</h1>
 
         <div>
